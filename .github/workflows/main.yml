@@ -1,0 +1,20 @@
+name: Run C++ Code
+
+on: [push, pull_request]
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: sudo apt-get install -y g++
+
+    - name: Compile C++ code
+      run: g++ -o output BST.cpp
+
+    - name: Run the compiled code
+      run: ./output
