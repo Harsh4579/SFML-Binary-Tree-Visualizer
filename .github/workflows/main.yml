@@ -1,4 +1,4 @@
-name: Run C++ Code
+name: Run SFML C++ Code
 
 on: [push, pull_request]
 
@@ -11,10 +11,12 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Install dependencies
-      run: sudo apt-get install -y g++
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y g++ libsfml-dev
 
-    - name: Compile C++ code
-      run: g++ -o output BST.cpp
+    - name: Compile SFML program
+      run: g++ -o output BST.cpp -lsfml-graphics -lsfml-window -lsfml-system
 
-    - name: Run the compiled code
+    - name: Run the compiled SFML program
       run: ./output
